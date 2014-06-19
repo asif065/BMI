@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:useDefaultMargins="true"
+    android:alignmentMode="alignBounds"
+    android:columnCount="4"
+    android:orientation="horizontal">
+
+
+
+    <TextView
+        android:text="Age:"
+        android:layout_column="0"
+        android:layout_gravity="right"
+        android:textSize="18dp"/>
+
+    <EditText
+        android:id="@+id/age"
+        android:inputType="numberDecimal"
+        android:ems="3"/>
+
+    <ImageView
+        android:id="@+id/maleFemale"/>
+    <Space />
+
+    <TextView
+        android:text="Weight(in KG):"
+        android:layout_column="0"
+        android:layout_gravity="right"
+        android:textSize="18dp"
+        />
+    <EditText
+        android:ems="3"
+        android:layout_column="1"
+        android:id="@+id/weight"
+        android:inputType="numberDecimal"/>
+
+    <Space />
+    <Space />
+
+
+    <TextView
+        android:text="Height:"
+        android:layout_column="0"
+        android:layout_gravity="right"
+        android:textSize="18dp"
+        />
+    <EditText
+        android:ems="3"
+        android:layout_column="1"
+        android:id="@+id/heightFeet"
+        android:inputType="numberDecimal"
+        android:hint="feet"/>
+    <EditText
+        android:ems="3"
+        android:layout_column="2"
+        android:id="@+id/heightInch"
+        android:inputType="numberDecimal"
+        android:hint="inch"/>
+
+    <Button
+        android:id="@+id/calculateBMI"
+        android:layout_columnSpan="1"
+        android:layout_column="0"
+        android:layout_gravity="center_horizontal"
+        android:text="Calculate"/>
+
+
+    <TextView
+        android:layout_column="2"
+        android:layout_gravity="right"
+        android:text="BMI:"
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/bmi"
+        android:layout_column="3"
+        android:text="0.0"
+        android:textSize="18dp"/>
+    <ImageView
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_columnSpan="4"
+        android:src="@drawable/line"/>
+
+</GridLayout>
