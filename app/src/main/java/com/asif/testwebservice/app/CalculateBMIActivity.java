@@ -2,6 +2,8 @@ package com.asif.testwebservice.app;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -78,49 +80,70 @@ public class CalculateBMIActivity extends Activity {
         List<String> list = new ArrayList<String>();
         list.add("KG");
         list.add("LB");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         weightSpinner.setAdapter(dataAdapter);
 
 
         bmiTextView = (TextView) findViewById(R.id.textBMIValue);
 
-        Button calculateButton = (Button)findViewById(R.id.buttonCalculateBMI);
-        calculateButton.setOnClickListener(new View.OnClickListener() {
+        heightFeetTextEdit.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                if (!ageTextEdit.getText().toString().equals(""))
-                    age = Double.parseDouble(ageTextEdit.getText().toString());
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                handleBMI();
 
-                if (!weightTextEdit.getText().toString().equals(""))
-                    weight = Double.parseDouble(weightTextEdit.getText().toString());
+            }
 
-                if (!heightFeetTextEdit.getText().toString().equals(""))
-                    heightFeet = Double.parseDouble(heightFeetTextEdit.getText().toString());
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                handleBMI();
+            }
 
-                if (!heightInchTextEdit.getText().toString().equals(""))
-                    heightInch = Double.parseDouble(heightInchTextEdit.getText().toString());
+            @Override
+            public void afterTextChanged(Editable editable) {
+                handleBMI();
 
-
-                if(heightFeet > 0)
-                    height = (heightFeet * 12)  * 0.0254;
-                if(heightInch > 0)
-                {
-                    if(height > 0)
-                    {
-                        height = height + (heightInch * 0.0254);
-                    }
-                    else
-                        height = heightInch * 0.0254;
-                }
-
-                //toast = Toast.makeText(getApplicationContext(), Double.toString(height), Toast.LENGTH_LONG);
-
-                bmi = calculateBMI(height, weight);
-                fBMI = Float.parseFloat(Double.toString(bmi));
-                bmiTextView.setText(Float.toString(fBMI));
             }
         });
+
+        heightInchTextEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                handleBMI();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                handleBMI();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                handleBMI();
+
+            }
+        });
+
+        weightTextEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                handleBMI();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                handleBMI();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                handleBMI();
+
+            }
+        });
+
     }
 
     private double calculateBMI(double height, double weight)
@@ -135,5 +158,46 @@ public class CalculateBMIActivity extends Activity {
             bmi = 0.0;
 
         return bmi;
+    }
+
+    private void handleBMI()
+    {
+        if (!ageTextEdit.getText().toString().equals(""))
+            age = Double.parseDouble(ageTextEdit.getText().toString());
+        else
+            age = 0.0;
+
+        if (!weightTextEdit.getText().toString().equals(""))
+            weight = Double.parseDouble(weightTextEdit.getText().toString());
+        else
+            weight = 0.0;
+
+        if (!heightFeetTextEdit.getText().toString().equals(""))
+            heightFeet = Double.parseDouble(heightFeetTextEdit.getText().toString());
+        else
+            heightFeet = 0.0;
+
+        if (!heightInchTextEdit.getText().toString().equals(""))
+            heightInch = Double.parseDouble(heightInchTextEdit.getText().toString());
+        else
+            heightInch = 0.0;
+
+
+        if(heightFeet > 0)
+            height = (heightFeet * 12)  * 0.0254;
+        else
+            height = 0.0;
+
+        if(heightInch > 0)
+        {
+            height = height + (heightInch * 0.0254);
+        }
+
+
+        //toast = Toast.makeText(getApplicationContext(), Double.toString(height)+Double.toString(weight), Toast.LENGTH_LONG);
+
+        bmi = calculateBMI(height, weight);
+        fBMI = Float.parseFloat(Double.toString(bmi));
+        bmiTextView.setText(Float.toString(fBMI));
     }
 }

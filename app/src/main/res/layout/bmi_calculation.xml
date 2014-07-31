@@ -85,21 +85,13 @@
         android:layout_toRightOf="@+id/textHeight" />
 
     <Spinner
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerWeight"
         android:layout_alignBottom="@+id/numberWeight"
         android:layout_toRightOf="@+id/numberWeight" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculate"
-        android:id="@+id/buttonCalculateBMI"
-        android:layout_below="@+id/textWeight"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="42dp" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -107,9 +99,11 @@
         android:text="BMI:"
         android:textSize="18dp"
         android:id="@+id/textBMI"
-        android:layout_alignBaseline="@+id/buttonCalculateBMI"
-        android:layout_alignBottom="@+id/buttonCalculateBMI"
-        android:layout_toRightOf="@+id/numberHeightFeet" />
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="19dp"
+        android:layout_below="@+id/textWeight"
+        android:layout_alignLeft="@+id/textHeight"
+        android:layout_alignStart="@+id/textHeight" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -118,8 +112,7 @@
         android:text="0.0"
         android:textSize="18dp"
         android:id="@+id/textBMIValue"
-        android:layout_alignBaseline="@+id/buttonCalculateBMI"
-        android:layout_alignBottom="@+id/buttonCalculateBMI"
+        android:layout_alignBottom="@+id/textBMI"
         android:layout_toRightOf="@+id/textBMI" />
 
 
